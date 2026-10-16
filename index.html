@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2B3A8C">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="یار تیزهوشان">
+<title>یار تیزهوشان – ششم دبستان</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F7FC;--surface:#fff;--ink:#1B1F3B;--muted:#5D6388;--brand:#2B3A8C;--on-brand:#fff;--accent:#FFC83D;--ok:#157A5E;--okbg:#DDF4EC;--bad:#C0323D;--badbg:#FBE3E5;--line:#DDE1F0;color-scheme:light;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12152B;--surface:#1C2040;--ink:#EEF0FF;--muted:#A3A9D3;--brand:#9DAEFF;--on-brand:#12152B;--ok:#5FD3AE;--okbg:#17372F;--bad:#FF8A93;--badbg:#42202A;--line:#2D3260;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#12152B;--surface:#1C2040;--ink:#EEF0FF;--muted:#A3A9D3;--brand:#9DAEFF;--on-brand:#12152B;--ok:#5FD3AE;--okbg:#17372F;--bad:#FF8A93;--badbg:#42202A;--line:#2D3260;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Vazirmatn,Tahoma,sans-serif;line-height:1.9;font-size:16px}
+main{max-width:640px;margin:0 auto;padding:16px 16px 40px}
+h1{font-size:22px;font-weight:800;margin:8px 0 14px}
+h2{font-size:18px;margin:0 0 8px}
+nav{display:flex;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:5px;margin-bottom:16px}
+nav button{flex:1;border:0;background:none;color:var(--muted);font:inherit;font-weight:600;padding:8px 4px;border-radius:10px;cursor:pointer}
+nav button[aria-selected="true"]{background:var(--brand);color:var(--on-brand)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:12px}
+.btn{border:0;background:var(--brand);color:var(--on-brand);font:inherit;font-weight:600;padding:10px 18px;border-radius:12px;cursor:pointer}
+.btn.alt{background:none;color:var(--brand);border:1.5px solid var(--brand)}
+.btn:disabled{opacity:.4;cursor:default}
+button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+select,input[type=text]{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+input[type=text]{flex:1;min-width:140px}
+.timer{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.ring{position:relative;width:84px;height:84px;flex:none}
+.ring svg{transform:rotate(-90deg)}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font-size:18px;font-variant-numeric:tabular-nums}
+.bar{height:8px;border-radius:8px;background:var(--line);flex:1;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);transition:width .3s}
+.opt{display:block;width:100%;text-align:right;font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:10px 14px;margin:8px 0;cursor:pointer}
+.opt[aria-pressed="true"]{border-color:var(--brand);background:var(--surface);box-shadow:inset 0 0 0 1.5px var(--brand)}
+.score{font-size:40px;font-weight:800;color:var(--brand)}
+.rev{border-radius:12px;padding:10px 14px;margin:10px 0;border:1px solid var(--line)}
+.rev.ok{background:var(--okbg)}.rev.no{background:var(--badbg)}
+.rev p{margin:4px 0}
+.tag{font-weight:800}
+.ok .tag{color:var(--ok)}.no .tag{color:var(--bad)}
+.task{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--line)}
+.task:last-child{border:0}
+.task span{flex:1}.task.done span{text-decoration:line-through;color:var(--muted)}
+.task button{border:0;background:none;color:var(--bad);font:inherit;cursor:pointer}
+.task input{width:20px;height:20px;accent-color:var(--brand)}
+details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:4px 14px;margin-bottom:10px}
+summary{font-weight:800;padding:8px 0;cursor:pointer}
+details ul{margin:0 0 10px;padding-inline-start:20px}
+.muted{color:var(--muted);font-size:14px}
+.hide{display:none}
+nav{overflow-x:auto}nav button{flex:1 0 auto;padding:8px 10px;white-space:nowrap;font-size:14px}
+.qn{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.qn button{width:38px;height:38px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;cursor:pointer;padding:0}
+.qn .a{background:var(--brand);color:var(--on-brand);border-color:var(--brand)}
+.qn .m{box-shadow:inset 0 0 0 3px var(--accent)}
+.qn .c{outline:3px solid var(--ink);outline-offset:1px}
+</style>
+</head>
+<body>
+<main>
+<h1>یار تیزهوشان</h1>
+<nav role="tablist">
+<button role="tab" aria-selected="true" data-t="exam">آزمون</button>
+<button role="tab" aria-selected="false" data-t="bank">سوال و پاسخ</button>
+<button role="tab" aria-selected="false" data-t="plan">برنامه هفتگی</button>
+<button role="tab" aria-selected="false" data-t="guide">زمان‌بندی مطالعه</button>
+<button role="tab" aria-selected="false" data-t="learn">درس‌ها</button>
+</nav>
+<section id="exam"></section>
+<section id="bank" class="hide"></section>
+<section id="plan" class="hide"></section>
+<section id="guide" class="hide"></section>
+<section id="learn" class="hide"></section>
+</main>
+<script>
+const fa=n=>String(n).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
+const Q=[
+{s:'هوش',q:'عدد بعدی الگو را پیدا کنید: ۲، ۶، ۱۸، ۵۴، ؟',o:['۱۰۸','۱۶۲','۱۶۰','۷۲'],a:1,e:'هر عدد ۳ برابر عدد قبلی است. پس ۵۴ × ۳ = ۱۶۲.'},
+{q:'سن علی ۳ برابر سن برادرش است و مجموع سن آن‌ها ۲۴ سال است. علی چند ساله است؟',o:['۱۲','۱۵','۱۸','۲۰'],a:2,e:'سن برادر ۱ قسمت و سن علی ۳ قسمت است، جمعاً ۴ قسمت. ۲۴ ÷ ۴ = ۶ (برادر) و ۶ × ۳ = ۱۸ (علی).'},
+{q:'دو سوم یک مخزن آب دارد. با افزودن ۱۲ لیتر، پنج‌ششم مخزن پر می‌شود. ظرفیت مخزن چند لیتر است؟',o:['۶۰','۷۲','۸۴','۹۶'],a:1,e:'اختلاف ۵/۶ و ۴/۶ برابر ۱/۶ مخزن است. پس ۱/۶ مخزن = ۱۲ لیتر و ظرفیت کل = ۱۲ × ۶ = ۷۲ لیتر.'},
+{q:'محیط یک مستطیل ۳۰ سانتی‌متر و طول آن ۹ سانتی‌متر است. مساحت آن چند سانتی‌متر مربع است؟',o:['۴۵','۵۴','۶۰','۸۱'],a:1,e:'نصف محیط = طول + عرض = ۱۵. پس عرض = ۱۵ − ۹ = ۶ و مساحت = ۹ × ۶ = ۵۴.'},
+{s:'هوش',q:'کدام عدد با بقیه فرق دارد؟ ۱۶ ، ۲۵ ، ۳۶ ، ۴۸',o:['۱۶','۲۵','۳۶','۴۸'],a:3,e:'۱۶ و ۲۵ و ۳۶ مربع کامل هستند (۴×۴ و ۵×۵ و ۶×۶) اما ۴۸ مربع کامل نیست.'},
+{q:'میانگین ۵ عدد برابر ۱۲ است. اگر عدد ۲۰ را از بین آن‌ها حذف کنیم، میانگین چهار عدد باقی‌مانده چند می‌شود؟',o:['۸','۹','۱۰','۱۱'],a:2,e:'مجموع ۵ عدد = ۵ × ۱۲ = ۶۰. با حذف ۲۰ مجموع می‌شود ۴۰ و میانگین چهار عدد = ۴۰ ÷ ۴ = ۱۰.'},
+{q:'۴ کارگر کاری را در ۱۲ روز تمام می‌کنند. بعد از ۳ روز، ۲ کارگر دیگر با همان سرعت به آن‌ها می‌پیوندند. کل کار در چند روز تمام می‌شود؟',o:['۸','۹','۱۰','۱۱'],a:1,e:'کل کار = ۴ × ۱۲ = ۴۸ «کارگر-روز». در ۳ روز اول ۴ × ۳ = ۱۲ انجام شده و ۳۶ مانده است. با ۶ کارگر: ۳۶ ÷ ۶ = ۶ روز. کل = ۳ + ۶ = ۹ روز.'},
+{q:'مجموع پنج عدد زوج متوالی ۱۴۰ است. کوچک‌ترین آن‌ها کدام است؟',o:['۲۰','۲۲','۲۴','۲۶'],a:2,e:'در اعداد متوالی، عدد وسط برابر میانگین است: ۱۴۰ ÷ ۵ = ۲۸. پس اعداد ۲۴، ۲۶، ۲۸، ۳۰ و ۳۲ هستند و کوچک‌ترین ۲۴ است.'},
+{q:'قیمت کالایی ۲۰٪ گران شد و بعد ۲۰٪ ارزان شد. قیمت نهایی نسبت به قیمت اول چه تغییری کرده است؟',o:['تغییری نکرده','۴٪ کاهش','۴٪ افزایش','۲۰٪ کاهش'],a:1,e:'قیمت اول را ۱۰۰ بگیر. بعد از ۲۰٪ افزایش می‌شود ۱۲۰. ۲۰٪ از ۱۲۰ برابر ۲۴ است، پس قیمت می‌شود ۹۶. یعنی ۴٪ کاهش.'},
+{q:'چند عدد دو رقمی بر ۷ بخش‌پذیر است؟',o:['۱۲','۱۳','۱۴','۱۵'],a:1,e:'اولین مضرب دو رقمی ۷ برابر ۱۴ (۷×۲) و آخرین ۹۸ (۷×۱۴) است. ضریب‌ها از ۲ تا ۱۴ هستند: ۱۴ − ۲ + ۱ = ۱۳ عدد.'},
+{s:'هوش',q:'عدد بعدی الگو را پیدا کنید: ۲، ۳، ۵، ۸، ۱۲، ؟',o:['۱۶','۱۷','۱۸','۲۰'],a:1,e:'تفاضل عددهای کنار هم ۱، ۲، ۳، ۴ است و بعدی ۵ می‌شود. پس ۱۲ + ۵ = ۱۷.'},
+{s:'هوش',q:'در یک صف ۷ نفره، علی از سمت راست نفر پنجم است. او از سمت چپ نفر چندم است؟',o:['۲','۳','۴','۵'],a:1,e:'۷ − ۵ = ۲ نفر سمت چپ علی هستند، پس او نفر سوم از چپ است. (فرمول: ۷ − ۵ + ۱ = ۳)'},
+{s:'هوش',q:'اگر ۵ ماشین در ۵ دقیقه ۵ قطعه بسازند، ۱۰۰ ماشین در ۱۰۰ دقیقه چند قطعه می‌سازند؟',o:['۱۰۰','۵۰۰','۱۰۰۰','۲۰۰۰'],a:3,e:'هر ماشین در ۵ دقیقه ۱ قطعه می‌سازد. در ۱۰۰ دقیقه هر ماشین ۱۰۰ ÷ ۵ = ۲۰ قطعه می‌سازد. پس ۱۰۰ ماشین ۱۰۰ × ۲۰ = ۲۰۰۰ قطعه می‌سازند.'}
+];
+let ex={i:0,ans:[],mk:[],left:0,total:0,id:null,fc:false};
+const $=s=>document.querySelector(s);
+const TABS=['exam','bank','plan','guide','learn'];
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+ document.querySelectorAll('nav button').forEach(x=>x.setAttribute('aria-selected',x===b));
+ TABS.forEach(t=>$('#'+t).classList.toggle('hide',t!==b.dataset.t));
+});
+const mmss=s=>fa(String(Math.floor(s/60)).padStart(2,'0'))+':'+fa(String(s%60).padStart(2,'0'));
+const sec=q=>q.s||'ریاضی';
+function examHome(){
+ clearInterval(ex.id);
+ $('#exam').innerHTML=`<div class="card"><h2>آزمون در سبک آزمون واقعی</h2><ul class="muted"><li>${fa(Q.length)} سوال چهارگزینه‌ای در دو بخش ریاضی و هوش</li><li>هر پاسخ درست ۱ نمره، هر پاسخ نادرست ۱/۳ نمره منفی، بی‌پاسخ صفر</li><li>تا پایان آزمون، جواب‌ها دیده نمی‌شود</li><li>سوال را نشان‌دار کن و بعداً به آن برگرد</li></ul>
+ <div class="row"><label for="mins">زمان آزمون:</label><select id="mins"><option value="20">${fa(20)} دقیقه</option><option value="30" selected>${fa(30)} دقیقه</option><option value="40">${fa(40)} دقیقه</option></select><button class="btn" id="go">شروع آزمون</button></div></div>`;
+ $('#go').onclick=()=>{const t=+$('#mins').value*60;ex={i:0,ans:Array(Q.length).fill(-1),mk:Array(Q.length).fill(false),left:t,total:t,id:null,fc:false};
+  ex.id=setInterval(()=>{ex.left--;if(ex.left<=0){finish();}else{tick();}},1000);showQ();};
+}
+function tick(){const t=$('#tm');if(!t)return;t.textContent=mmss(ex.left);$('#arc').setAttribute('stroke-dashoffset',String(226*(1-ex.left/ex.total)));}
+function showQ(){
+ const q=Q[ex.i],n=Q.length,done=ex.ans.filter(a=>a>=0).length;
+ $('#exam').innerHTML=`<div class="timer"><div class="ring"><svg width="84" height="84" viewBox="0 0 84 84"><circle cx="42" cy="42" r="36" fill="none" stroke="var(--line)" stroke-width="7"/><circle id="arc" cx="42" cy="42" r="36" fill="none" stroke="var(--accent)" stroke-width="7" stroke-linecap="round" stroke-dasharray="226" stroke-dashoffset="${226*(1-ex.left/ex.total)}"/></svg><b id="tm">${mmss(ex.left)}</b></div>
+ <div style="flex:1"><div class="muted">سوال ${fa(ex.i+1)} از ${fa(n)} (بخش ${sec(q)})</div><div class="bar"><i style="width:${done/n*100}%"></i></div><div class="muted">پاسخ‌داده‌شده: ${fa(done)}</div></div></div>
+ <div class="qn">${Q.map((_,k)=>`<button data-n="${k}" class="${ex.ans[k]>=0?'a ':''}${ex.mk[k]?'m ':''}${k==ex.i?'c':''}" aria-label="سوال ${fa(k+1)}">${fa(k+1)}</button>`).join('')}</div>
+ <div class="card"><p style="margin-top:0;font-weight:600">${q.q}</p>${q.o.map((t,k)=>`<button class="opt" data-k="${k}" aria-pressed="${ex.ans[ex.i]===k}">${t}</button>`).join('')}
+ <div class="row" style="justify-content:space-between;margin-top:12px"><button class="btn alt" id="pv" ${ex.i==0?'disabled':''}>قبلی</button><button class="btn alt" id="mk">${ex.mk[ex.i]?'برداشتن نشان':'نشان‌دار کن'}</button><button class="btn" id="nx" ${ex.i==n-1?'disabled':''}>بعدی</button></div></div>
+ <div class="card">${ex.fc?`<p style="margin-top:0">${fa(n-done)} سوال بی‌پاسخ مانده. آزمون تمام شود؟</p><div class="row"><button class="btn" id="fy">بله، پایان آزمون</button><button class="btn alt" id="fn">ادامه می‌دهم</button></div>`:'<button class="btn" id="fe">پایان آزمون</button>'}</div>`;
+ document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{const k=+b.dataset.k;ex.ans[ex.i]=ex.ans[ex.i]===k?-1:k;showQ();});
+ document.querySelectorAll('.qn button').forEach(b=>b.onclick=()=>{ex.i=+b.dataset.n;showQ();});
+ $('#pv').onclick=()=>{ex.i--;showQ();};
+ $('#nx').onclick=()=>{ex.i++;showQ();};
+ $('#mk').onclick=()=>{ex.mk[ex.i]=!ex.mk[ex.i];showQ();};
+ if(ex.fc){$('#fy').onclick=finish;$('#fn').onclick=()=>{ex.fc=false;showQ();};}else{$('#fe').onclick=()=>{ex.fc=true;showQ();};}
+}
+function finish(){
+ clearInterval(ex.id);
+ let c=0,w=0,b=0;const S={};
+ Q.forEach((q,i)=>{const k=sec(q);S[k]=S[k]||[0,0];S[k][1]++;if(ex.ans[i]<0)b++;else if(ex.ans[i]===q.a){c++;S[k][0]++;}else w++;});
+ const sc=Math.max(0,c-w/3),pc=Math.round(sc/Q.length*100),used=ex.total-Math.max(ex.left,0);
+ $('#exam').innerHTML=`<div class="card"><div class="muted">نتیجه آزمون</div><div class="score">${fa(pc)}٪</div>
+ <p style="margin:0">نمره: ${fa(sc.toFixed(1)).replace('.','٫')} از ${fa(Q.length)}</p>
+ <p class="muted" style="margin:0">درست: ${fa(c)} • نادرست: ${fa(w)} • بی‌پاسخ: ${fa(b)}</p>
+ <p class="muted" style="margin:0">${Object.entries(S).map(([k,v])=>k+': '+fa(v[0])+' از '+fa(v[1])).join(' • ')}</p>
+ <p class="muted" style="margin:0">زمان مصرف‌شده: ${mmss(used)}</p>
+ <div class="row" style="margin-top:12px"><button class="btn" id="again">آزمون دوباره</button></div></div><h2>پاسخ تشریحی</h2>`+
+ Q.map((q,i)=>{const good=ex.ans[i]===q.a;const your=ex.ans[i]<0?'بدون پاسخ':q.o[ex.ans[i]];
+ return `<div class="rev ${good?'ok':'no'}"><p><span class="tag">${good?'درست':'نادرست'}</span> سوال ${fa(i+1)}: ${q.q}</p><p>پاسخ تو: ${your}</p><p>پاسخ درست: ${q.o[q.a]}</p><p>راه‌حل: ${q.e}</p></div>`}).join('');
+ $('#again').onclick=examHome;
+}
+function bankView(f){
+ $('#bank').innerHTML=`<div class="row" style="margin-bottom:12px">${[['all','همه'],['ریاضی','ریاضی'],['هوش','هوش']].map(([k,t])=>`<button class="btn ${f==k?'':'alt'}" data-f="${k}">${t}</button>`).join('')}</div>`+
+ Q.map((q,i)=>({q,i})).filter(x=>f=='all'||sec(x.q)==f).map(({q,i})=>`<details><summary>سوال ${fa(i+1)} (${sec(q)}): ${q.q}</summary><p>${q.o.map((t,k)=>fa(k+1)+') '+t).join(' &nbsp; ')}</p><div class="rev ok"><p><span class="tag">پاسخ درست:</span> ${q.o[q.a]}</p><p>${q.e}</p></div></details>`).join('');
+ document.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>bankView(b.dataset.f));
+}
+const WK=['ریاضی','هوش','ریاضی','هوش','مرور درس‌های کلاسی','آزمون کامل و مرور اشتباه‌ها'];
+function guideView(h=1.5){
+ const m=h*60,hs=fa(h).replace('.','٫'),P=[['ریاضی',.4],['هوش',.3],['مرور درس‌های کلاسی',.2],['مرور اشتباه‌ها',.1]];
+ $('#guide').innerHTML=`<div class="card"><h2>در روز چقدر بخوانم؟</h2><div class="row"><label for="hh">زمان مطالعه روزانه:</label><select id="hh">${[1,1.5,2,3].map(x=>`<option value="${x}" ${x==h?'selected':''}>${fa(x).replace('.','٫')} ساعت</option>`).join('')}</select></div>
+ <p class="muted">پیشنهاد تقسیم زمان در یک روز مطالعه:</p>${P.map(([n,r])=>`<div class="task"><span>${n}</span><b>${fa(Math.round(m*r/5)*5)} دقیقه</b></div>`).join('')}
+ <p class="muted">هر ۳۰ دقیقه را این‌طور بخوان: ۲۵ دقیقه مطالعه و ۵ دقیقه استراحت.</p></div>
+ <div class="card"><h2>چرخه هفتگی پیشنهادی</h2>${WK.map((w,k)=>`<div class="task"><span>${DAYS[k]}</span><b>${w}</b></div>`).join('')}<p class="muted">جمعه استراحت کن.</p><button class="btn" id="addw">افزودن به برنامه هفتگی</button></div>
+ <div class="card"><h2>نکته‌های مهم</h2><ul><li>هر روز در یک ساعت ثابت بخوان.</li><li>ریاضی را در زمانی بخوان که ذهنت تازه‌تر است.</li><li>یک دفتر برای اشتباه‌هایت داشته باش و هفته‌ای یک بار مرورش کن.</li><li>هفته‌ای یک آزمون کامل و زمان‌دار بده.</li><li>قبل از آزمون، شب قبل زود بخواب.</li></ul></div>`;
+ $('#hh').onchange=e=>guideView(+e.target.value);
+ $('#addw').onclick=e=>{WK.forEach((w,k)=>tasks.push({d:k,kind:k==5?'آزمون':'درس',text:w+' ('+hs+' ساعت)',done:false}));save();planView();e.target.disabled=true;e.target.textContent='به برنامه هفتگی اضافه شد';};
+}
+const DAYS=['شنبه','یکشنبه','دوشنبه','سه‌شنبه','چهارشنبه','پنجشنبه'];
+let tasks=[];
+try{tasks=JSON.parse(localStorage.getItem('plan'))||[];}catch(e){tasks=[];}
+function save(){try{localStorage.setItem('plan',JSON.stringify(tasks));}catch(e){}}
+function planView(){
+ $('#plan').innerHTML=`<div class="card"><h2>افزودن به برنامه</h2><div class="row">
+ <select id="pd">${DAYS.map((d,i)=>`<option value="${i}">${d}</option>`).join('')}</select>
+ <select id="pk"><option>درس</option><option>تکلیف</option><option>مرور</option><option>آزمون</option></select>
+ <input type="text" id="pt" placeholder="مثلاً: حل ۱۰ مسئله کسر"><button class="btn" id="pa">افزودن</button></div></div>`+
+ DAYS.map((d,i)=>{const l=tasks.map((t,k)=>({...t,k})).filter(t=>t.d===i);
+ return `<div class="card"><h2>${d}</h2>${l.length?l.map(t=>`<div class="task ${t.done?'done':''}"><input type="checkbox" data-c="${t.k}" ${t.done?'checked':''} aria-label="انجام شد"><span><b>${t.kind}:</b> ${t.text.replace(/</g,'&lt;')}</span><button data-x="${t.k}" aria-label="حذف">حذف</button></div>`).join(''):'<div class="muted">هنوز کاری ثبت نشده.</div>'}</div>`}).join('');
+ $('#pa').onclick=()=>{const v=$('#pt').value.trim();if(!v)return;tasks.push({d:+$('#pd').value,kind:$('#pk').value,text:v,done:false});save();planView();};
+ document.querySelectorAll('[data-c]').forEach(c=>c.onchange=()=>{tasks[+c.dataset.c].done=c.checked;save();planView();});
+ document.querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>{tasks.splice(+b.dataset.x,1);save();planView();});
+}
+
+const L=[
+['ریاضی',['جمع و تفریق کسرها: اول مخرج‌ها را یکسان کن، بعد صورت‌ها را جمع یا کم کن.','محیط مستطیل = ۲ × (طول + عرض) و مساحت = طول × عرض.','درصد: ۵۰٪ برابر ۱/۲ و ۲۵٪ برابر ۱/۴ است.','در مسائل کلامی، مجهول را «قسمت» بگیر و رابطه‌ها را با قسمت‌ها بنویس.']],
+['علوم',['انرژی از شکلی به شکل دیگر تبدیل می‌شود، مثل انرژی الکتریکی به نور در لامپ.','چرخه آب: تبخیر، تشکیل ابر، بارش و جمع‌شدن دوباره آب.','مخلوط از چند ماده تشکیل شده است و می‌توان مواد آن را جدا کرد، مثل آب و شن.','آهنربا به فلز آهن نیرو وارد می‌کند و دو قطب هم‌نام همدیگر را دفع می‌کنند.']],
+['فارسی',['جمله از نهاد (انجام‌دهنده کار) و گزاره (بقیه جمله) ساخته می‌شود.','فعل سه زمان دارد: گذشته، حال (مضارع) و آینده.','واژه‌های هم‌معنی را مترادف و واژه‌های ضد هم را متضاد می‌گویند.']],
+['مطالعات اجتماعی',['چهار جهت اصلی: شمال، جنوب، شرق و غرب. روی نقشه، بالا معمولاً شمال است.','قاره‌های زمین: آسیا، آفریقا، اروپا، آمریکای شمالی، آمریکای جنوبی، اقیانوسیه و جنوبگان.','ایران در قاره آسیا قرار دارد.']]
+];
+$('#learn').innerHTML='<p class="muted">خلاصه نکته‌های مهم هر درس. برای دیدن هر درس روی نامش بزن.</p>'+L.map(([n,p],i)=>`<details ${i==0?'open':''}><summary>${n}</summary><ul>${p.map(x=>`<li>${x}</li>`).join('')}</ul></details>`).join('');
+if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));}
+examHome();bankView('all');guideView();planView();
+</script>
+</body>
+</html>
